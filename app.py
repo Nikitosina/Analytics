@@ -16,7 +16,7 @@ def create_app() -> Flask:
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('-p', '--port', default=5001, type=int, help='port to listen on')
-    parser.add_argument('-s', '--setup', default='remote', type=str, help='use local or remote db')
+    parser.add_argument('-s', '--setup', default='local', type=str, help='use local or remote db')
     args = parser.parse_args()
     port = args.port
     if args.setup == 'remote':
