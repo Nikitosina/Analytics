@@ -1,3 +1,4 @@
+import config
 from flask import Flask
 from argparse import ArgumentParser
 
@@ -14,9 +15,16 @@ def create_app() -> Flask:
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
+    parser.add_argument('-p', '--port', default=5001, type=int, help='port to listen on')
+    parser.add_argument('-s', '--setup', default='remote', type=str, help='use local or remote db')
     args = parser.parse_args()
     port = args.port
+    if args.setup == 'remote':
+        config.current_config = config.Remote()
+    elif args.setup == 'local':
+        config.current_config = config.Local()
+    else:
+        raise ValueError("Wrong app setup type")
 
     app = create_app()
 
