@@ -3,7 +3,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 
 
-conn_str = 'clickhouse://default:@localhost/default'
+# clickhouse://username:password@ip:port/DBNAME
+conn_str = 'clickhouse://default:@localhost:8123/default'
 engine = create_engine(conn_str)
 session = sessionmaker(bind=engine)()
 
